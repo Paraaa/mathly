@@ -1,19 +1,25 @@
-from Difficulty import Difficulty
+import sys
+
+from cli_parser import parser
+from Math.Difficulty import Difficulty
 
 
 def main():
 
-    # TODO: Make this decidable by the user
-
-    # This gets an instance based on the chosen difficulty
+    args = vars(parser.parse_args())
+    # Base case if no difficulty is specified
     generator = Difficulty.L1.value
 
+    if args['difficulty']:
+        try:
+            generator = Difficulty[args['difficulty']].value
+        except KeyError:
+            print(f"The level \"{args['difficulty']}\" does not exist.")
+            sys.exit()
+
     while (True):
-        # create a math problem
         solution = generator.create_problem()
-
         user_input = input(": ")
-
         generator.check_solution(user_input, solution)
 
 

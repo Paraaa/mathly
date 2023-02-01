@@ -1,13 +1,13 @@
 import random
 
-from MathGenerator.MathGenerator import MathGenerator
+from Math.MathGenerator import MathGenerator
 
 
-class L1_Generator(MathGenerator):
+class BasicGenerator(MathGenerator):
 
-    def __init__(self):
+    def __init__(self, range):
         MathGenerator.__init__(self)
-        self.problem_range = (1, 9)
+        self.problem_range = range
 
     def create_problem(self):
         """Generator for basic math problems.
